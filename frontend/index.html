@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Management App</title>
+</head>
+<body>
+    <h1>Employee Management System</h1>
+
+    <button onclick="loadEmployees()">
+        Show Employees
+    </button>
+
+    <ul id="employees"></ul>
+
+    <script>
+        async function loadEmployees() {
+            const response = await fetch('/api/employees');
+            const employees = await response.json();
+
+            let output = "";
+
+            employees.forEach(emp => {
+                output += `<li>${emp.id} - ${emp.name}</li>`;
+            });
+
+            document.getElementById("employees").innerHTML = output;
+        }
+    </script>
+</body>
+</html>
